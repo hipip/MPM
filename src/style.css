@@ -46,6 +46,9 @@ tr {
 tr:hover .delete-row-btn {
   opacity: 1;
 }
+th {
+  font-weight: 900;
+}
 
 .delete-row-btn {
   cursor: pointer;
@@ -68,4 +71,5 @@ tr:hover .delete-row-btn {
   text-align: center;
   border: none;
   outline: none;
+  width: fit-content;
 }

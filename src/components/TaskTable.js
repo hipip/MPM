@@ -1,13 +1,22 @@
-const getTasks = () => {
-  return [...document.querySelectorAll(".task-row")].map((taskRow) => {
-    const [td1, td2, td3] = taskRow.children;
-    const [taskName, taskDuration, taskPredecessors] = [
+import Node from "../classes/Node.js";
+import TopologicalSort from "../utils/TopologicalSort.js";
+
+const getNodes = () => {
+  const nodes = [];
+  [...document.querySelectorAll(".task-row")].forEach((row) => {
+    const [td1, td2, td3] = row.children;
+    let [taskName, taskDuration, taskPredecessors] = [
       td1.children[0].value,
       td2.children[0].value,
-      td3.children[0].value,
+      td3.children[0].value.split(","),
     ];
-    return [taskName, taskDuration, taskPredecessors];
+    if (taskPredecessors.length === 1 && taskPredecessors[0] === "")
+      taskPredecessors = new Set();
+    else taskPredecessors = new Set(taskPredecessors);
+    if (taskName !== "" && taskDuration !== "")
+      nodes.push(new Node(taskName, taskDuration, taskPredecessors));
   });
+  return nodes;
 };
 
 const newRow = () => {
@@ -66,7 +75,7 @@ const TaskTable = () => {
     btn.className = "btn add-task-btn";
     btn.onclick = () => {
       table.insertBefore(newRow(), cont);
-      console.table(getTasks());
+      TopologicalSort();
     };
 
     td.appendChild(btn);
@@ -88,3 +97,4 @@ const TaskTable = () => {
   return table;
 };
 export default TaskTable;
+export { getNodes };
