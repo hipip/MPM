@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
-  --svg-area-bg: #9dadff;
+  --svg-area-bg: #89d0ff;
   --node-fill: #fbeaeb;
   --node-stroke-color: black;
   --node-stroke-width: 2px;
@@ -152,7 +152,7 @@ th {
 }
 
 .svg-area {
-  background-color: var(--svg-area-bg);
+  background: var(--svg-area-bg);
 }
 
 .node-rect {
@@ -215,4 +215,26 @@ th {
   stroke-width: 2px;
   stroke: black;
   fill: black;
+}
+
+.svg-area.disco {
+  animation: disco 2s infinite alternate;
+}
+
+@keyframes disco {
+  0% {
+    background-color: #ff0066; /* bright pink */
+  }
+  25% {
+    background-color: #00ff00; /* bright green */
+  }
+  50% {
+    background-color: #0000ff; /* bright blue */
+  }
+  75% {
+    background-color: #ffff00; /* bright yellow */
+  }
+  100% {
+    background-color: #ff00ff; /* bright purple */
+  }
 }

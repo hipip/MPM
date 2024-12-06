@@ -8,4 +8,6 @@ document.body.appendChild(TaskTable());
 window.addEventListener("keydown", (e) => {
   if (e.key === "Enter") Mpm.renderGraph();
   if (e.key === "t") toggleTaskTable();
+  if (e.key === "d")
+    document.querySelector(".svg-area").classList.toggle("disco");
 });
