@@ -43,7 +43,10 @@ const topologicalSort = (graph) => {
 };
 
 const buildGraph = () => {
-  const graph = {};
+  const graph = {
+    Début: new Node("Début", 0, new Set(), new Set()),
+    Fin: new Node("Fin", 0, new Set(), new Set()),
+  };
 
   document.querySelectorAll(".task-row").forEach((taskRow) => {
     const [td1, td2, td3] = taskRow.children;
@@ -53,7 +56,7 @@ const buildGraph = () => {
       td3.children[0].value.split(","),
     ];
     if (taskPredecessors.length === 1 && taskPredecessors[0] === "")
-      taskPredecessors = new Set();
+      taskPredecessors = new Set(["Début"]);
     else taskPredecessors = new Set([...taskPredecessors]);
 
     if (taskName !== "" && taskDuration !== "")
@@ -65,6 +68,15 @@ const buildGraph = () => {
     const node = graph[nodeName];
     for (const predecessor of node.predecessors) {
       graph[predecessor].successors.add(nodeName);
+    }
+  }
+
+  // Ajouter le sommet Fin au successeurs des sommet qui n'ont aucun successeur ;)
+  for (const nodeName in graph) {
+    const node = graph[nodeName];
+    if (node.successors.size === 0 && nodeName !== "Fin") {
+      node.successors.add("Fin");
+      graph["Fin"].predecessors.add(nodeName);
     }
   }
 
