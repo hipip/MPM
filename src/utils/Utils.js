@@ -80,8 +80,7 @@ const buildGraph = () => {
     }
   }
 
-  console.log(graph);
-  console.log(topologicalSort(graph));
+  return graph;
 };
 
-export { buildGraph };
+export { buildGraph, topologicalSort };
