@@ -1,6 +1,10 @@
 import Node from "../classes/Node.js";
 import Popup from "../components/Popup.js";
 
+const toggleTaskTable = () => {
+  document.querySelector(".task-table").classList.toggle("hidden");
+};
+
 const topologicalSort = (graph) => {
   const inDegree = {};
   const queue = [];
@@ -83,4 +87,4 @@ const buildGraph = () => {
   return graph;
 };
 
-export { buildGraph, topologicalSort };
+export { buildGraph, topologicalSort, toggleTaskTable };

@@ -1,4 +1,6 @@
 import { buildGraph, topologicalSort } from "./Utils.js";
+import NodeElement from "../components/NodeElement.js";
+import Edge from "../components/Edge.js";
 
 export default class Mpm {
   static calculateDates() {
@@ -31,6 +33,58 @@ export default class Mpm {
       }
     }
 
-    console.log(graph);
+    return [graph, levels];
+  }
+
+  static renderGraph() {
+    document.querySelector(".task-table").classList.add("hidden");
+    const [, , WIDTH, HEIGHT] = document
+      .querySelector(".svg-area")
+      .getAttribute("viewBox")
+      .split(" ");
+    const nodesContainer = document.querySelector(".nodes-container");
+    const edgesContainer = document.querySelector(".edges-container");
+    const [graph, levels] = Mpm.calculateDates();
+
+    nodesContainer.innerHTML = "";
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const horizontalGap = parseFloat(
+      rootStyles.getPropertyValue("--horizontal-gap")
+    );
+    const verticalGap = parseFloat(
+      rootStyles.getPropertyValue("--vertical-gap")
+    );
+
+    const levelWidth = horizontalGap;
+    const centerY = HEIGHT / 2;
+
+    levels.forEach((level, levelIndex) => {
+      const levelNodeCount = level.length;
+
+      const totalVerticalSpace = HEIGHT - (levelNodeCount - 1) * verticalGap;
+      const startingY = totalVerticalSpace / 2;
+
+      level.forEach((nodeName, nodeIndex) => {
+        const x = levelIndex * levelWidth;
+        let y;
+
+        if (nodeName === "Début") {
+          y = centerY;
+        } else if (nodeName === "Fin") {
+          y = centerY;
+        } else {
+          y = startingY + nodeIndex * verticalGap;
+        }
+
+        nodesContainer.appendChild(NodeElement(graph[nodeName], x, y));
+      });
+    });
+
+    for (const nodeName in graph) {
+      for (const successor of graph[nodeName].successors) {
+        edgesContainer.appendChild(Edge(nodeName, successor));
+      }
+    }
   }
 }
