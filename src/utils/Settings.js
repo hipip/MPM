@@ -1,0 +1,6 @@
+const NODE_WIDTH = 120;
+const NODE_HEIGHT = 80;
+const HORIZONTAL_GAP = 100;
+const VERTICAL_GAP = 100;
+
+export { NODE_WIDTH, NODE_HEIGHT };

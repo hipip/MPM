@@ -1,24 +1,3 @@
-import Node from "../classes/Node.js";
-import TopologicalSort from "../utils/TopologicalSort.js";
-
-const getNodes = () => {
-  const nodes = [];
-  [...document.querySelectorAll(".task-row")].forEach((row) => {
-    const [td1, td2, td3] = row.children;
-    let [taskName, taskDuration, taskPredecessors] = [
-      td1.children[0].value,
-      td2.children[0].value,
-      td3.children[0].value.split(","),
-    ];
-    if (taskPredecessors.length === 1 && taskPredecessors[0] === "")
-      taskPredecessors = new Set();
-    else taskPredecessors = new Set(taskPredecessors);
-    if (taskName !== "" && taskDuration !== "")
-      nodes.push(new Node(taskName, taskDuration, taskPredecessors));
-  });
-  return nodes;
-};
-
 const newRow = () => {
   const tr = document.createElement("tr");
   tr.className = "task-row";
@@ -54,6 +33,7 @@ const newRow = () => {
 
 const TaskTable = () => {
   const table = document.createElement("table");
+  table.className = "task-table";
   const thead = document.createElement("thead");
   const tr = document.createElement("tr");
   const th1 = document.createElement("th");
@@ -63,25 +43,34 @@ const TaskTable = () => {
   const th3 = document.createElement("th");
   th3.textContent = "Tâches antérieures";
 
-  const addTaskButton = () => {
-    const cont = document.createElement("tfoot");
-    cont.className = "add-task-row";
+  const lastRow = () => {
+    const tfoot = document.createElement("tfoot");
     const tr = document.createElement("tr");
     const td = document.createElement("td");
-    td.colSpan = "3";
+    td.colSpan = 3;
+
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.textContent = "Ajouter Tâche";
+    btn.textContent = "+";
     btn.className = "btn add-task-btn";
     btn.onclick = () => {
-      table.insertBefore(newRow(), cont);
-      TopologicalSort();
+      table.insertBefore(newRow(), tfoot);
     };
 
     td.appendChild(btn);
     tr.appendChild(td);
-    cont.appendChild(tr);
-    return cont;
+    tfoot.appendChild(tr);
+    return tfoot;
+  };
+
+  const hideTableBtn = () => {
+    const btn = document.createElement("button");
+    btn.className = "btn hide-table-btn";
+    btn.textContent = "X";
+    btn.onclick = () => {
+      table.classList.add("hidden");
+    };
+    return btn;
   };
 
   tr.appendChild(th1);
@@ -91,10 +80,9 @@ const TaskTable = () => {
   thead.appendChild(tr);
 
   table.appendChild(thead);
-  table.appendChild(addTaskButton());
+  table.appendChild(lastRow());
+  table.appendChild(hideTableBtn());
 
-  table.className = "task-table";
   return table;
 };
 export default TaskTable;
-export { getNodes };
