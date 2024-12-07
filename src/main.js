@@ -14,4 +14,6 @@ window.addEventListener("keydown", (e) => {
     [...document.querySelectorAll(".highlighted")].forEach((elem) =>
       elem.classList.remove("highlighted")
     );
+  if (e.key === "m")
+    document.querySelector(".marges-table").classList.toggle("hidden");
 });

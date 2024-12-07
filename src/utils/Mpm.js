@@ -1,6 +1,7 @@
 import { buildGraph, topologicalSort } from "./Utils.js";
 import NodeElement from "../components/NodeElement.js";
 import Edge from "../components/Edge.js";
+import MargesTable from "../components/MargesTable.js";
 
 export default class Mpm {
   static calculateDates() {
@@ -38,8 +39,22 @@ export default class Mpm {
 
     // Calcul de la marge total des tâches
     for (const nodeName in graph) {
+      if (nodeName === "Début" || nodeName === "Fin") continue;
       const node = graph[nodeName];
       node.margeTotale = node.plusTard - node.plusTot;
+    }
+
+    // Calcul de la marge libre des tâches
+    for (const nodeName in graph) {
+      if (nodeName === "Début" || nodeName === "Fin") continue;
+      const currentNode = graph[nodeName];
+      let min = Infinity;
+      for (const successor of currentNode.successors) {
+        const newVal =
+          graph[successor].plusTot - currentNode.plusTot - currentNode.duration;
+        if (newVal < min) min = newVal;
+      }
+      currentNode.margeLibre = min;
     }
 
     return [graph, levels];
@@ -97,5 +112,8 @@ export default class Mpm {
         edgesContainer.appendChild(Edge(nodeName, successor));
       }
     }
+
+    document.querySelector(".marges-table")?.remove();
+    document.body.appendChild(MargesTable(graph));
   }
 }
