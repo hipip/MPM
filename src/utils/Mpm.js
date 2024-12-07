@@ -6,6 +6,9 @@ export default class Mpm {
   static calculateDates() {
     const graph = buildGraph();
     const levels = topologicalSort(graph);
+    if (!levels) {
+      return;
+    }
 
     // Calcul des dates de début au plus tôt
     graph["Début"].plusTot = 0;
@@ -33,6 +36,12 @@ export default class Mpm {
       }
     }
 
+    // Calcul de la marge total des tâches
+    for (const nodeName in graph) {
+      const node = graph[nodeName];
+      node.margeTotale = node.plusTard - node.plusTot;
+    }
+
     return [graph, levels];
   }
 
@@ -44,7 +53,9 @@ export default class Mpm {
       .split(" ");
     const nodesContainer = document.querySelector(".nodes-container");
     const edgesContainer = document.querySelector(".edges-container");
-    const [graph, levels] = Mpm.calculateDates();
+    const res = Mpm.calculateDates();
+    if (!res) return;
+    const [graph, levels] = res;
 
     nodesContainer.innerHTML = "";
 

@@ -10,4 +10,8 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "t") toggleTaskTable();
   if (e.key === "d")
     document.querySelector(".svg-area").classList.toggle("disco");
+  if (e.key === "r")
+    [...document.querySelectorAll(".highlighted")].forEach((elem) =>
+      elem.classList.remove("highlighted")
+    );
 });

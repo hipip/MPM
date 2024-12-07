@@ -13,6 +13,18 @@ const Edge = (startNode, endNode) => {
 
   const cont = document.createElementNS("http://www.w3.org/2000/svg", "g");
   cont.classList.add("edge");
+  cont.setAttribute("from", startNode);
+  cont.setAttribute("to", endNode);
+
+  cont.onclick = () => {
+    [...document.querySelectorAll(".highlighted")].forEach((elem) =>
+      elem.classList.remove("highlighted")
+    );
+    startNodeElem.classList.add("highlighted");
+    endNodeElem.classList.add("highlighted");
+    edge.classList.add("highlighted");
+    console.log("clicked");
+  };
 
   const edge = document.createElementNS("http://www.w3.org/2000/svg", "line");
   edge.classList.add("edge-line");

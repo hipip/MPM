@@ -9,6 +9,7 @@
   --node-height: 80px;
   --horizontal-gap: 300px;
   --vertical-gap: 200px;
+  --highlighted: #da0b0b;
 }
 * {
   padding: 0;
@@ -211,8 +212,15 @@ th {
   height: var(--node-height);
 }
 
+.node-rect.highlighted {
+  fill: var(--highlighted);
+}
+.edge-line.highlighted {
+  stroke: var(--highlighted);
+}
+
 .edge-line {
-  stroke-width: 2px;
+  stroke-width: 3px;
   stroke: black;
   fill: black;
 }
