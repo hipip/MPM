@@ -74,6 +74,8 @@ th {
   opacity: 0;
 }
 
+.marges-table td:nth-child(3),
+.marges-table th:nth-child(3),
 .task-table th:nth-child(2),
 .marges-table th:nth-child(2),
 .marges-table td:nth-child(2),
@@ -81,6 +83,7 @@ th {
   border-left: 1px solid black;
   border-right: 1px solid black;
 }
+
 .task-table th,
 .marges-table th,
 .marges-table td,

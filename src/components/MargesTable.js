@@ -9,10 +9,13 @@ const MargesTable = (graph) => {
   th2.textContent = "Marge Totale";
   const th3 = document.createElement("th");
   th3.textContent = "Marge Libre";
+  const th4 = document.createElement("th");
+  th4.textContent = "Critique?";
 
   tr.appendChild(th1);
   tr.appendChild(th2);
   tr.appendChild(th3);
+  tr.appendChild(th4);
   thead.appendChild(tr);
   cont.appendChild(thead);
 
@@ -24,6 +27,7 @@ const MargesTable = (graph) => {
         <td>${node.name}</td>
         <td>${node.margeTotale}</td>
         <td>${node.margeLibre}</td>
+        <td>${node.margeTotale === 0 ? "Oui" : "Non"}</td>
     </tr>
     `;
   }
