@@ -73,6 +73,7 @@ export default class Mpm {
     const [graph, levels] = res;
 
     nodesContainer.innerHTML = "";
+    edgesContainer.innerHTML = "";
 
     const rootStyles = getComputedStyle(document.documentElement);
     const horizontalGap = parseFloat(
@@ -82,22 +83,32 @@ export default class Mpm {
       rootStyles.getPropertyValue("--vertical-gap")
     );
 
-    const levelWidth = horizontalGap;
     const centerY = HEIGHT / 2;
+    const levelWidth = WIDTH / levels.length;
 
     levels.forEach((level, levelIndex) => {
       const levelNodeCount = level.length;
+
+      let x;
+      if (levelIndex === 0) {
+        x = 0;
+      } else if (levelIndex === levels.length - 1) {
+        x = WIDTH - horizontalGap;
+      } else {
+        x = levelIndex * levelWidth;
+      }
 
       const totalVerticalSpace = HEIGHT - (levelNodeCount - 1) * verticalGap;
       const startingY = totalVerticalSpace / 2;
 
       level.forEach((nodeName, nodeIndex) => {
-        const x = levelIndex * levelWidth;
         let y;
 
         if (nodeName === "Début") {
           y = centerY;
         } else if (nodeName === "Fin") {
+          y = centerY;
+        } else if (levelNodeCount === 1) {
           y = centerY;
         } else {
           y = startingY + nodeIndex * verticalGap;
