@@ -11,10 +11,16 @@ const Edge = (startNode, endNode) => {
   const y2 = endNodeElem.getAttribute("y");
   const duration = startNodeElem.getAttribute("duration");
 
+  const isStartNodeCritical =
+    startNodeElem.parentElement.classList.contains("critical");
+  const isEndNodeCritical =
+    endNodeElem.parentElement.classList.contains("critical");
+
   const cont = document.createElementNS("http://www.w3.org/2000/svg", "g");
   cont.classList.add("edge");
   cont.setAttribute("from", startNode);
   cont.setAttribute("to", endNode);
+  if (isStartNodeCritical && isEndNodeCritical) cont.classList.add("critical");
 
   cont.onclick = () => {
     [...document.querySelectorAll(".highlighted")].forEach((elem) =>

@@ -196,6 +196,10 @@ th {
   fill: white;
 }
 
+.edge.critical .edge-line {
+  stroke: #ff1313;
+}
+
 .node-h-line,
 .node-v-line {
   stroke: var(--node-stroke-color);
