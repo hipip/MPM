@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
-  --svg-area-bg: #fdd975;
+  --svg-area-bg: #5ad2f7;
   --node-fill: #fbeaeb;
   --node-stroke-color: black;
   --node-stroke-width: 2px;
@@ -19,7 +19,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,6 +32,7 @@ input {
 }
 
 table {
+  overflow: scroll;
   border-collapse: collapse;
 }
 
@@ -66,6 +67,10 @@ th {
   text-align: center;
   background-color: whitesmoke;
   transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.task-table {
+  z-index: 80;
 }
 
 .task-table.hidden,
@@ -122,6 +127,17 @@ th {
   box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.8);
 }
 
+.render-graph-btn {
+  padding: 10px 40px;
+  font-weight: 600;
+  font-size: 1.3rem;
+  border: none;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  z-index: 80;
+}
+
 .hide-table-btn {
   position: absolute;
   top: 0;
@@ -170,6 +186,14 @@ th {
   fill: var(--node-fill);
   stroke: var(--node-stroke-color);
   stroke-width: var(--node-stroke-width);
+}
+
+.node.critical .node-rect {
+  fill: #ff1313;
+}
+
+.node.critical text {
+  fill: white;
 }
 
 .node-h-line,
@@ -236,7 +260,13 @@ th {
 }
 
 .svg-area.disco {
-  animation: disco 2s infinite alternate;
+  animation: disco 1s infinite alternate;
+}
+
+.svg-area.disco .node,
+.svg-area.disco .edge {
+  transform-origin: center;
+  animation: dance 0.25s infinite;
 }
 
 @keyframes disco {
@@ -254,5 +284,15 @@ th {
   }
   100% {
     background-color: #ff00ff; /* bright purple */
+  }
+}
+
+@keyframes dance {
+  from {
+  }
+  50% {
+    transform: scale(2);
+  }
+  to {
   }
 }

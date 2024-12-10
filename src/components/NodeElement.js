@@ -5,11 +5,11 @@ const NodeElement = (nodeObj, x, y) => {
 
   const node = document.createElementNS("http://www.w3.org/2000/svg", "g");
   node.classList.add("node");
+  if (nodeObj.plusTard === nodeObj.plusTot) node.classList.add("critical");
   node.id = nodeObj.name;
 
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.classList.add("node-rect");
-  rect.setAttribute("fill", "crimson");
   rect.setAttribute("x", x);
   rect.setAttribute("y", y);
   rect.setAttribute("duration", nodeObj.duration);

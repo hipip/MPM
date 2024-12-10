@@ -75,7 +75,7 @@ const buildGraph = () => {
     }
   }
 
-  // Ajouter le sommet Fin au successeurs des sommet qui n'ont aucun successeur ;)
+  // Ajouter le sommet Fin au successeurs des sommet qui n'ont aucun successeur
   for (const nodeName in graph) {
     const node = graph[nodeName];
     if (node.successors.size === 0 && nodeName !== "Fin") {

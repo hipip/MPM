@@ -1,3 +1,5 @@
+import Mpm from "../utils/Mpm.js";
+
 const newRow = () => {
   const tr = document.createElement("tr");
   tr.className = "task-row";
@@ -46,8 +48,11 @@ const TaskTable = () => {
   const lastRow = () => {
     const tfoot = document.createElement("tfoot");
     const tr = document.createElement("tr");
+    const tr2 = document.createElement("tr");
     const td = document.createElement("td");
+    const td2 = document.createElement("td");
     td.colSpan = 3;
+    td2.colSpan = 3;
 
     const btn = document.createElement("button");
     btn.type = "button";
@@ -57,9 +62,20 @@ const TaskTable = () => {
       table.insertBefore(newRow(), tfoot);
     };
 
+    const btn2 = document.createElement("button");
+    btn2.type = "button";
+    btn2.textContent = "Générer réseau MPM";
+    btn2.className = "btn render-graph-btn";
+    btn2.onclick = () => {
+      Mpm.renderGraph();
+    };
+
     td.appendChild(btn);
+    td2.appendChild(btn2);
     tr.appendChild(td);
+    tr2.appendChild(td2);
     tfoot.appendChild(tr);
+    tfoot.appendChild(tr2);
     return tfoot;
   };
 
