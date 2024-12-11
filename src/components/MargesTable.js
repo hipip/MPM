@@ -39,7 +39,7 @@ const MargesTable = (graph) => {
       name: node.name,
       margeTotale: node.margeTotale,
       margeLibre: node.margeLibre,
-      critique: node.MargesTotale === 0,
+      critique: node.margeTotale === 0,
     }))
   );
 

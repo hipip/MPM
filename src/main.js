@@ -14,6 +14,6 @@ window.addEventListener("keydown", (e) => {
   if (e.key === "F12" && e.ctrlKey) {
     document.querySelector(".svg-area").classList.toggle("disco");
   }
-  if (e.key === "m")
-    document.querySelector(".marges-table").classList.toggle("hidden");
+  if (e.key.toLowerCase() === "m")
+    document.querySelector(".marges-table")?.classList.toggle("hidden");
 });

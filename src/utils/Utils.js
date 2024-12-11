@@ -56,14 +56,14 @@ const buildGraph = () => {
     const [td1, td2, td3] = taskRow.children;
     let [taskName, taskDuration, taskPredecessors] = [
       td1.children[0].value.trim(),
-      td2.children[0].value,
+      parseInt(td2.children[0].value),
       td3.children[0].value.split(","),
     ];
     if (taskPredecessors.length === 1 && taskPredecessors[0] === "")
       taskPredecessors = new Set(["Début"]);
     else taskPredecessors = new Set([...taskPredecessors]);
 
-    if (taskName !== "" && taskDuration !== "")
+    if (taskName !== "" && !isNaN(taskDuration))
       graph[taskName] = new Node(taskName, +taskDuration, taskPredecessors);
   });
 
