@@ -300,3 +300,21 @@ th {
   to {
   }
 }
+
+.special-btn {
+  position: fixed;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.tasks-table-btn {
+  z-index: 90;
+  padding: 10px 40px;
+  margin: 20px;
+  background-color: black;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  border-radius: 30px;
+  border: none;
+}
