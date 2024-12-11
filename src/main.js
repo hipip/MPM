@@ -11,7 +11,7 @@ document.body.appendChild(
   )
 );
 window.addEventListener("keydown", (e) => {
-  if (e.key === "d") {
+  if (e.key === "F12" && e.ctrlKey) {
     document.querySelector(".svg-area").classList.toggle("disco");
   }
   if (e.key === "m")

@@ -19,6 +19,8 @@ const MargesTable = (graph) => {
   thead.appendChild(tr);
   cont.appendChild(thead);
 
+  let toPrint;
+
   for (const nodeName in graph) {
     if (nodeName === "Début" || nodeName === "Fin") continue;
     const node = graph[nodeName];
@@ -31,6 +33,15 @@ const MargesTable = (graph) => {
     </tr>
     `;
   }
+
+  console.log(
+    Object.values(graph).map((node) => ({
+      name: node.name,
+      margeTotale: node.margeTotale,
+      margeLibre: node.margeLibre,
+      critique: node.MargesTotale === 0,
+    }))
+  );
 
   return cont;
 };
