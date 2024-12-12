@@ -22,20 +22,10 @@ const Edge = (startNode, endNode) => {
   cont.setAttribute("to", endNode);
   if (isStartNodeCritical && isEndNodeCritical) cont.classList.add("critical");
 
-  cont.onclick = () => {
-    [...document.querySelectorAll(".highlighted")].forEach((elem) =>
-      elem.classList.remove("highlighted")
-    );
-    startNodeElem.classList.add("highlighted");
-    endNodeElem.classList.add("highlighted");
-    edge.classList.add("highlighted");
-    console.log("clicked");
-  };
-
   const edge = document.createElementNS("http://www.w3.org/2000/svg", "line");
   edge.classList.add("edge-line");
-  edge.setAttribute("x1", +x1 + nodeWidth / 2);
-  edge.setAttribute("x2", +x2 + nodeWidth / 2);
+  edge.setAttribute("x1", +x1 + nodeWidth);
+  edge.setAttribute("x2", +x2);
   edge.setAttribute("y1", +y1 + nodeHeight / 2);
   edge.setAttribute("y2", +y2 + nodeHeight / 2);
 

@@ -57,7 +57,7 @@ const buildGraph = () => {
     let [taskName, taskDuration, taskPredecessors] = [
       td1.children[0].value.trim(),
       parseInt(td2.children[0].value),
-      td3.children[0].value.split(","),
+      td3.children[0].value.split(",").map((pred) => pred.trim()),
     ];
     if (taskPredecessors.length === 1 && taskPredecessors[0] === "")
       taskPredecessors = new Set(["Début"]);

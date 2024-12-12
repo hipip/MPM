@@ -1,6 +1,6 @@
 const MargesTable = (graph) => {
   const cont = document.createElement("table");
-  cont.className = "marges-table";
+  cont.className = "marges-table hidden";
   const thead = document.createElement("thead");
   const tr = document.createElement("tr");
   const th1 = document.createElement("th");
@@ -18,8 +18,6 @@ const MargesTable = (graph) => {
   tr.appendChild(th4);
   thead.appendChild(tr);
   cont.appendChild(thead);
-
-  let toPrint;
 
   for (const nodeName in graph) {
     if (nodeName === "Début" || nodeName === "Fin") continue;
