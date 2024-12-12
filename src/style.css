@@ -47,7 +47,7 @@ td {
   text-align: center;
 }
 td {
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .task-table tr,
@@ -70,16 +70,11 @@ th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
   max-height: 70vh;
   overflow-y: auto;
   z-index: 999;
   transition: 0.4s ease;
   opacity: 1;
-}
-
-.task-table {
-  width: 100%;
 }
 
 .task-table thead {
@@ -131,7 +126,7 @@ th {
 .task-table .inp {
   background: none;
   font-size: 1.2rem;
-  max-width: 150px;
+  max-width: 100px;
 }
 
 .btn {
