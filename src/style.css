@@ -8,7 +8,7 @@
   --node-width: 120px;
   --node-height: 80px;
   --horizontal-gap: 300px;
-  --vertical-gap: 200px;
+  --vertical-gap: 100px;
   --highlighted: #da0b0b;
 }
 * {

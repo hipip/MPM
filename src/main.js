@@ -1,4 +1,3 @@
-import Button from "./components/Button.js";
 import ButtonsContainer from "./components/ButtonsContainer.js";
 import SvgArea from "./components/SvgArea.js";
 import TaskTable from "./components/TaskTable.js";

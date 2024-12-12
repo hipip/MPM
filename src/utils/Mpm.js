@@ -62,10 +62,11 @@ export default class Mpm {
 
   static renderGraph() {
     document.querySelector(".task-table").classList.add("hidden");
-    const [, , WIDTH, HEIGHT] = document
+    let [, , WIDTH, HEIGHT] = document
       .querySelector(".svg-area")
       .getAttribute("viewBox")
       .split(" ");
+    HEIGHT = HEIGHT * 0.8;
     const nodesContainer = document.querySelector(".nodes-container");
     const edgesContainer = document.querySelector(".edges-container");
     const res = Mpm.calculateDates();
