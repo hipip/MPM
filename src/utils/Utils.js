@@ -2,7 +2,7 @@ import Node from "../classes/Node.js";
 import Popup from "../components/Popup.js";
 
 const toggleTaskTable = () => {
-  document.querySelector(".task-table").classList.toggle("hidden");
+  document.querySelector(".table-container").classList.toggle("hidden");
 };
 
 const topologicalSort = (graph) => {

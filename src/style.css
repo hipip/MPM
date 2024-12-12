@@ -63,20 +63,52 @@ th {
   font-weight: 900;
 }
 
+.table-container {
+  display: block;
+  position: fixed;
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 999;
+  transition: 0.4s ease;
+  opacity: 1;
+}
+
+.task-table {
+  width: 100%;
+}
+
+.task-table thead {
+  position: sticky;
+  background-color: #f0f0f0;
+  top: 0;
+}
+
 .task-table,
 .marges-table {
   border: 1px solid black;
-  position: fixed;
   text-align: center;
   background-color: whitesmoke;
   transition: transform 0.6s ease, opacity 0.6s ease;
-  z-index: 100;
+  z-index: 80;
 }
 
-.task-table.hidden,
-.marges-table.hidden {
-  transform: translateY(300px);
+.marges-table {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.marges-table.hidden,
+.table-container.hidden {
+  translate: 0 300px;
   opacity: 0;
+  display: none;
 }
 
 .marges-table td:nth-child(3),
@@ -139,7 +171,7 @@ th {
 }
 
 .hide-table-btn {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 30px;
@@ -288,7 +320,7 @@ th {
   bottom: 0;
   z-index: 80;
   flex: 1 0 auto;
-  padding: 25px;
+  padding: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

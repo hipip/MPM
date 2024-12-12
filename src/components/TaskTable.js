@@ -34,6 +34,9 @@ const newRow = () => {
 };
 
 const TaskTable = () => {
+  const container = document.createElement("div");
+  container.className = "table-container";
+
   const table = document.createElement("table");
   table.className = "task-table";
   const thead = document.createElement("thead");
@@ -84,7 +87,7 @@ const TaskTable = () => {
     btn.className = "btn hide-table-btn";
     btn.textContent = "X";
     btn.onclick = () => {
-      table.classList.add("hidden");
+      container.classList.add("hidden");
     };
     return btn;
   };
@@ -99,6 +102,7 @@ const TaskTable = () => {
   table.appendChild(lastRow());
   table.appendChild(hideTableBtn());
 
-  return table;
+  container.appendChild(table);
+  return container;
 };
 export default TaskTable;

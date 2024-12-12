@@ -61,7 +61,7 @@ export default class Mpm {
   }
 
   static renderGraph() {
-    document.querySelector(".task-table").classList.add("hidden");
+    document.querySelector(".table-container").classList.add("hidden");
     let [, , WIDTH, HEIGHT] = document
       .querySelector(".svg-area")
       .getAttribute("viewBox")
